@@ -1,23 +1,16 @@
 ﻿// Написать алгоритм поворота матрицы [N;N] на 90 градусов
 
-int n = 6; // Размерность матрицы
+int n = 8; // Размерность матрицы
 int[,] matrixSource = new int[n, n];
-int[,] matrixDestination = new int[n, n];
 
 void FillMatrix(ref int[,] arraySrc)
 {
     int n = arraySrc.GetUpperBound(0) + 1;
-    {
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-            {
-                arraySrc[i, j] = 0;
-            }
-        for (int i = 0; i < n / 2; i++)
-        {
-            arraySrc[i, n - i - 1] = 11;
-        }
-    }
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            arraySrc[i, j] = 0;
+    for (int i = 0; i < n / 2; i++)
+        arraySrc[i, n - i - 1] = 11;
 
 }
 
@@ -27,9 +20,7 @@ void PrintMatrix(ref int[,] matrixSrc)
     {
         System.Console.WriteLine();
         for (int j = 0; j <= matrixSrc.GetUpperBound(1); j++)
-        {
             System.Console.Write($"{matrixSrc[i, j]:D2} ");
-        }
     }
     System.Console.WriteLine();
 }
@@ -59,14 +50,23 @@ void RotateMatrix90(ref int[,] matrixSrc, string direction)
 FillMatrix(ref matrixSource);
 PrintMatrix(ref matrixSource);
 
-RotateMatrix90(ref matrixSource, "CW");
-PrintMatrix(ref matrixSource);
+int tWork0 = DateTime.Now.Millisecond;
 
 RotateMatrix90(ref matrixSource, "CW");
+System.Console.WriteLine(DateTime.Now.Millisecond-tWork0);
 PrintMatrix(ref matrixSource);
 
-RotateMatrix90(ref matrixSource, "CCW");
+tWork0 = DateTime.Now.Millisecond;
+RotateMatrix90(ref matrixSource, "CW");
+System.Console.WriteLine(DateTime.Now.Millisecond-tWork0);
 PrintMatrix(ref matrixSource);
 
+tWork0 = DateTime.Now.Millisecond;
 RotateMatrix90(ref matrixSource, "CCW");
+System.Console.WriteLine(DateTime.Now.Millisecond-tWork0);
+PrintMatrix(ref matrixSource);
+
+tWork0 = DateTime.Now.Millisecond;
+RotateMatrix90(ref matrixSource, "CCW");
+System.Console.WriteLine(DateTime.Now.Millisecond-tWork0);
 PrintMatrix(ref matrixSource);
